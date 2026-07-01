@@ -115,3 +115,10 @@ STATICFILES_STORAGE = (
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+LLOGIN_URL = "/"
+
+LOGIN_REDIRECT_URL = "/dashboard/"
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://ncl-itsm-system.onrender.com",
+]
