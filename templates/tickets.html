@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ticket Management</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#f4f7fb;
+    display:flex;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+}
+
+.sidebar h2{
+    text-align:center;
+    padding:25px;
+}
+
+.sidebar a{
+    display:block;
+    padding:15px 25px;
+    color:white;
+    text-decoration:none;
+}
+
+.sidebar a:hover{
+    background:#1e293b;
+}
+
+.main{
+    padding:30px;
+    flex:1;
+}
+
+table{
+    width:100%;
+    background:white;
+    border-collapse:collapse;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    table-layout:fixed;
+}
+
+th{
+    background:#0b1b4d;
+    color:white;
+    padding:16px;
+    text-align:center;
+    font-size:16px;
+}
+
+td{
+    padding:16px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+    vertical-align:middle;
+    font-size:15px;
+}
+
+tr:hover{
+    background:#f8fafc;
+}
+
+/* Status Colors */
+
+.open-status{
+    background:#ef4444;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.assigned-status{
+    background:#f59e0b;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.progress-status{
+    background:#3b82f6;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.resolved-status{
+    background:#10b981;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+.closed-status{
+    background:#64748b;
+    color:white;
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:13px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>ITSM</h2>
+
+<a href="/dashboard/">🏠 Dashboard</a>
+<a href="/assets/">💻 Assets</a>
+<a href="/employees/">👨‍💼 Employees</a>
+<a href="/vendors/">🏢 Vendors</a>
+<a href="/software/">📦 Software</a>
+<a href="/tickets/">🎫 Tickets</a>
+<a href="/">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1>Ticket Management</h1>
+
+<table>
+
+<tr>
+    <th>Ticket ID</th>
+    <th>Category</th>
+    <th>Title</th>
+    <th>Employee</th>
+    <th>Priority</th>
+    <th>Status</th>
+    <th>Assigned Engineer</th>
+    <th>Created Date</th>
+</tr>
+
+{% for ticket in tickets %}
+
+<tr>
+
+    <td>{{ ticket.ticket_id }}</td>
+
+    <td>{{ ticket.category }}</td>
+
+    <td>{{ ticket.title }}</td>
+
+    <td>{{ ticket.employee }}</td>
+
+    <td>{{ ticket.priority }}</td>
+
+    <td>
+        {% if ticket.status == 'Open' %}
+            <span class="open-status">{{ ticket.status }}</span>
+
+        {% elif ticket.status == 'Assigned' %}
+            <span class="assigned-status">{{ ticket.status }}</span>
+
+        {% elif ticket.status == 'In Progress' %}
+            <span class="progress-status">{{ ticket.status }}</span>
+
+        {% elif ticket.status == 'Resolved' %}
+            <span class="resolved-status">{{ ticket.status }}</span>
+
+        {% else %}
+            <span class="closed-status">{{ ticket.status }}</span>
+        {% endif %}
+    </td>
+
+    <td>{{ ticket.assigned_engineer }}</td>
+
+    <td>{{ ticket.created_at|date:"d M Y" }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

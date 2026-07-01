@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>NCL ITSM Login</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#f4f7fb;
+}
+
+.container{
+width:900px;
+height:520px;
+background:white;
+border-radius:20px;
+overflow:hidden;
+display:flex;
+box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.left{
+flex:1;
+background:#0f172a;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
+
+.left h1{
+font-size:55px;
+margin-bottom:10px;
+}
+
+.left p{
+font-size:18px;
+color:#cbd5e1;
+text-align:center;
+}
+
+.right{
+flex:1;
+padding:60px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+}
+
+.title{
+text-align:center;
+font-size:34px;
+font-weight:bold;
+color:#0f172a;
+margin-bottom:35px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:18px;
+border:1px solid #d1d5db;
+border-radius:10px;
+font-size:15px;
+}
+
+input:focus{
+outline:none;
+border:2px solid #2563eb;
+}
+
+button{
+width:100%;
+padding:14px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.error{
+background:#fee2e2;
+color:#b91c1c;
+padding:12px;
+border-radius:8px;
+margin-bottom:15px;
+text-align:center;
+}
+
+.footer{
+margin-top:20px;
+text-align:center;
+color:#64748b;
+font-size:14px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="left">
+<h1>ITSM</h1>
+
+<p>
+Northern Coalfields Limited<br>
+IT Service Management System
+</p>
+
+</div>
+
+<div class="right">
+
+<div class="title">
+Sign In
+</div>
+
+{% if error %}
+<div class="error">
+{{ error }}
+</div>
+{% endif %}
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>User ID</label>
+
+<input
+type="text"
+name="username"
+placeholder="Enter User ID"
+required
+>
+
+<label>Password</label>
+
+<input
+type="password"
+name="password"
+placeholder="Enter Password"
+required
+>
+
+<button type="submit">
+Login
+</button>
+
+</form>
+
+<div class="footer">
+NCL ITSM Portal © 2026
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

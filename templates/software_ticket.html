@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Report Software Issue</title>
+
+<style>
+
+body{
+    font-family:Segoe UI;
+    background:#f4f7fb;
+    padding:40px;
+}
+
+.container{
+    width:650px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+h1{
+    color:#0b1b4d;
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-top:15px;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    margin-top:25px;
+    background:#10b981;
+    color:white;
+    border:none;
+    padding:14px 25px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>💻 Report Software Issue</h1>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>Employee</label>
+
+<select name="employee">
+
+{% for emp in employees %}
+
+<option value="{{ emp.id }}">
+{{ emp.name }}
+</option>
+
+{% endfor %}
+
+</select>
+
+
+<label>Title</label>
+
+<input type="text" name="title">
+
+
+<label>Impact Level</label>
+
+<select name="impact_level">
+
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+<option>Critical</option>
+
+</select>
+
+
+<label>Error Code</label>
+
+<input type="text" name="error_code">
+
+
+<label>Priority</label>
+
+<select name="priority">
+
+<option>Low</option>
+<option>Medium</option>
+<option>High</option>
+<option>Critical</option>
+
+</select>
+
+
+<label>Description</label>
+
+<textarea name="description" rows="5"></textarea>
+
+
+<button type="submit">
+
+Submit Ticket
+
+</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

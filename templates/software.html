@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Software Management</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:#f4f7fb;
+display:flex;
+}
+
+.sidebar{
+width:250px;
+height:100vh;
+background:#0f172a;
+position:fixed;
+color:white;
+}
+
+.sidebar h2{
+padding:25px;
+text-align:center;
+}
+
+.sidebar a{
+display:block;
+padding:15px 25px;
+color:white;
+text-decoration:none;
+}
+
+.sidebar a:hover{
+background:#1e293b;
+}
+
+.content{
+margin-left:250px;
+padding:30px;
+width:100%;
+}
+
+table{
+width:100%;
+background:white;
+border-collapse:collapse;
+}
+
+th{
+background:#0f172a;
+color:white;
+padding:15px;
+}
+
+td{
+padding:15px;
+border-bottom:1px solid #ddd;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>ITSM</h2>
+
+<a href="/dashboard/">Dashboard</a>
+<a href="/assets/">Assets</a>
+<a href="/employees/">Employees</a>
+<a href="/vendors/">Vendors</a>
+<a href="/software/">Software</a>
+
+</div>
+
+<div class="content">
+
+<h1>Software Management</h1>
+
+<br>
+
+<table>
+
+<tr>
+<th>Software Name</th>
+<th>Version</th>
+<th>License Key</th>
+<th>Expiry Date</th>
+<th>Status</th>
+</tr>
+
+{% for s in software %}
+
+<tr>
+<td>{{ s.software_name }}</td>
+<td>{{ s.version }}</td>
+<td>{{ s.license_key }}</td>
+<td>{{ s.expiry_date }}</td>
+<td>{{ s.status }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</div>
+
+</body>
+</html>

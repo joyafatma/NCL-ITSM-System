@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Assets</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI;
+        }
+
+        body{
+            background:#f4f6f9;
+        }
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            background:#0b1f4d;
+            position:fixed;
+            color:white;
+        }
+
+        .sidebar h2{
+            text-align:center;
+            padding:25px;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:18px 25px;
+        }
+
+        .sidebar a:hover{
+            background:#16377c;
+        }
+
+        .content{
+            margin-left:250px;
+            padding:30px;
+        }
+
+        .title{
+            font-size:35px;
+            font-weight:bold;
+            margin-bottom:20px;
+        }
+
+        table{
+            width:100%;
+            background:white;
+            border-collapse:collapse;
+            box-shadow:0 2px 10px rgba(0,0,0,.1);
+        }
+
+        th{
+            background:#0b1f4d;
+            color:white;
+            padding:15px;
+        }
+
+        td{
+            padding:15px;
+            border-bottom:1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h2>ITSM</h2>
+
+    <a href="/dashboard/">Dashboard</a>
+    <a href="/assets/">Assets</a>
+</div>
+
+<div class="content">
+
+    <div class="title">
+        Asset Management
+    </div>
+
+    <table>
+        <tr>
+            <th>Asset Name</th>
+            <th>Type</th>
+            <th>Serial No</th>
+            <th>Status</th>
+        </tr>
+
+    {% for asset in assets %}
+<tr>
+    <td>{{ asset.asset_name }}</td>
+    <td>{{ asset.asset_type }}</td>
+    <td>{{ asset.serial_number }}</td>
+    <td>{{ asset.status }}</td>
+</tr>
+{% endfor %}   
+    </table>
+
+</div>
+
+</body>
+</html>

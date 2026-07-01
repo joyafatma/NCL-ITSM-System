@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Excel Reconciliation</title>
+
+    <style>
+
+    body{
+        font-family:Segoe UI;
+        background:#f4f7fb;
+        padding:40px;
+    }
+
+    .box{
+        background:white;
+        width:900px;
+        margin:auto;
+        padding:30px;
+        border-radius:15px;
+        box-shadow:0 0 20px rgba(0,0,0,0.1);
+    }
+
+    h1{
+        color:#0b1b4d;
+    }
+
+    input[type=file]{
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+
+    button{
+        background:#0b1b4d;
+        color:white;
+        border:none;
+        padding:12px 25px;
+        border-radius:8px;
+        cursor:pointer;
+    }
+
+    table{
+        width:100%;
+        margin-top:30px;
+        border-collapse:collapse;
+    }
+
+    th{
+        background:#0b1b4d;
+        color:white;
+        padding:12px;
+    }
+
+    td{
+        border:1px solid #ddd;
+        padding:10px;
+        text-align:center;
+    }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>Excel Reconciliation Module</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+
+<input type="file"
+       name="excel_file"
+       required>
+
+<br>
+
+<button type="submit">
+
+Upload Excel
+
+</button>
+
+</form>
+
+
+{% if duplicates %}
+
+<h2>Duplicate Material Codes</h2>
+
+<table>
+
+<tr>
+
+{% for key,value in duplicates.0.items %}
+
+<th>{{ key }}</th>
+
+{% endfor %}
+
+</tr>
+
+
+{% for row in duplicates %}
+
+<tr>
+
+{% for key,value in row.items %}
+
+<td>{{ value }}</td>
+
+{% endfor %}
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
